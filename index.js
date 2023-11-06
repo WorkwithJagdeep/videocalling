@@ -21,6 +21,7 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId, user) => {
+    console.log(userId);
     socket.join(roomId);
     socket.to(roomId).emit("user-connected", userId, user);
     socket.on("create-message", (msg, user) => {
@@ -39,6 +40,6 @@ io.on("connection", (socket) => {
 });
 
 const port = process.env.PORT || 8080;
-server.listen(port , ()=>{
-  console.log("server running on" , port)
+server.listen(port, () => {
+  console.log("server running on", port);
 });
